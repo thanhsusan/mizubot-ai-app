@@ -1,3 +1,4 @@
+
 import { GoogleGenAI, Chat, GenerateContentResponse, Part, Content, GroundingChunk as SDKGroundingChunk } from "@google/genai";
 import { GEMINI_MODEL_TEXT } from '../constants';
 import { GroundingChunk as LocalGroundingChunk } from '../types';
@@ -5,9 +6,10 @@ import { GroundingChunk as LocalGroundingChunk } from '../types';
 let ai: GoogleGenAI | null = null;
 
 const getApiKey = (): string => {
-  const apiKey = process.env.API_KEY;
+  // Sử dụng import.meta.env theo chuẩn của Vite để truy cập biến môi trường
+  const apiKey = import.meta.env.VITE_API_KEY;
   if (!apiKey) {
-    console.error("API_KEY is not defined in environment variables.");
+    console.error("VITE_API_KEY is not defined in environment variables.");
     throw new Error("API_KEY_MISSING: Khóa API chưa được cấu hình.");
   }
   return apiKey;

@@ -25,19 +25,11 @@ export const EMPLOYEE_PASSWORD = "mizuchan2025";
 
 export const GEMINI_MODEL_TEXT = 'gemini-2.5-flash-preview-04-17';
 
-// Simulated API Key for demonstration - replace with actual environment variable handling
-// In a real build, process.env.API_KEY would be set by the build environment.
-// For this sandbox, we'll define it here if not present, but with a strong warning.
-if (typeof process === 'undefined') {
-  // @ts-ignore
-  globalThis.process = { env: {} };
-}
-if (!process.env.API_KEY) {
+// API Key được truy cập thông qua import.meta.env.VITE_API_KEY theo chuẩn của Vite.
+// Biến này phải được định nghĩa trong môi trường build (ví dụ: trên Netlify).
+if (!import.meta.env.VITE_API_KEY) {
   console.warn(
-    "API_KEY is not defined in environment variables. Using a placeholder. This will not work with the actual Gemini API."
+    "VITE_API_KEY is not defined in environment variables. Using a placeholder. This will not work with the actual Gemini API."
   );
-  // Provide a placeholder if you want the UI to run without calling the actual API
-  // or ensure your environment setup correctly populates this.
-  // For this exercise, assuming it's handled by the execution environment as per prompt.
-  // process.env.API_KEY = "YOUR_API_KEY_HERE"; // DO NOT COMMIT ACTUAL KEYS
+  // Bạn có thể muốn hiển thị một thông báo lỗi rõ ràng hơn trong UI nếu key bị thiếu.
 }

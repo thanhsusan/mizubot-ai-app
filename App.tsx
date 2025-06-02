@@ -30,9 +30,10 @@ const App: React.FC = () => {
       setIsLoading(true);
       setError(null);
       
-      if (!process.env.API_KEY) {
+      // Sử dụng import.meta.env theo chuẩn của Vite
+      if (!import.meta.env.VITE_API_KEY) {
         setApiKeyMissing(true);
-        setError("API_KEY is not configured. Chatbot cannot function.");
+        setError("VITE_API_KEY is not configured. Chatbot cannot function.");
         setMessages(prev => [...prev, {
           id: 'apikey-error',
           text: "Lỗi cấu hình: API Key không tồn tại. Vui lòng liên hệ quản trị viên.",
@@ -89,9 +90,10 @@ const App: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    if (!process.env.API_KEY) {
+    // Sử dụng import.meta.env theo chuẩn của Vite
+    if (!import.meta.env.VITE_API_KEY) {
       setApiKeyMissing(true);
-      console.warn("API Key is missing. Chat functionality will be disabled.");
+      console.warn("VITE_API_KEY is missing. Chat functionality will be disabled.");
     }
   }, []);
 
