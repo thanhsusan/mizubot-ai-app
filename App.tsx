@@ -30,8 +30,8 @@ const App: React.FC = () => {
       setIsLoading(true);
       setError(null);
       
-      // Sử dụng import.meta.env theo chuẩn của Vite
-      if (!import.meta.env.VITE_API_KEY) {
+      // Sử dụng import.meta.env theo chuẩn của Vite, use optional chaining
+      if (!import.meta.env?.VITE_API_KEY) {
         setApiKeyMissing(true);
         setError("VITE_API_KEY is not configured. Chatbot cannot function.");
         setMessages(prev => [...prev, {
@@ -90,10 +90,10 @@ const App: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    // Sử dụng import.meta.env theo chuẩn của Vite
-    if (!import.meta.env.VITE_API_KEY) {
+    // Sử dụng import.meta.env theo chuẩn của Vite, use optional chaining
+    if (!import.meta.env?.VITE_API_KEY) {
       setApiKeyMissing(true);
-      console.warn("VITE_API_KEY is missing. Chat functionality will be disabled.");
+      console.warn("VITE_API_KEY is missing or import.meta.env is undefined. Chat functionality will be disabled.");
     }
   }, []);
 

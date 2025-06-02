@@ -7,9 +7,10 @@ let ai: GoogleGenAI | null = null;
 
 const getApiKey = (): string => {
   // Sử dụng import.meta.env theo chuẩn của Vite để truy cập biến môi trường
-  const apiKey = import.meta.env.VITE_API_KEY;
+  // Use optional chaining in case import.meta.env is undefined
+  const apiKey = import.meta.env?.VITE_API_KEY;
   if (!apiKey) {
-    console.error("VITE_API_KEY is not defined in environment variables.");
+    console.error("VITE_API_KEY is not defined in import.meta.env or import.meta.env is undefined.");
     throw new Error("API_KEY_MISSING: Khóa API chưa được cấu hình.");
   }
   return apiKey;
